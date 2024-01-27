@@ -1,5 +1,3 @@
-const answer = "APPLE";
-
 let index = 0;
 let attempts = 0;
 let timer;
@@ -25,8 +23,11 @@ function appStart() {
     clearInterval(timer);
   };
 
-  const handleEnterKey = () => {
+  const handleEnterKey = async () => {
     let win = 0;
+    const update = await fetch("/answer");
+    const answer = await update.json();
+
     for (let i = 0; i < 5; i++) {
       const block = document.querySelector(
         `.board-column[data-index='${attempts}${i}']`
